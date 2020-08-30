@@ -84,16 +84,13 @@ async function isValidJwtSignature(token) {
   // The following is setup with the data from an application www.wolftracker.nz 
   // The JWK is available here: https://wolftracker.au.auth0.com/.well-known/jwks.json
   const jwk = {
-    alg: "RS256",
-    kty: "RSA",
-    key_ops: ['verify'],
-    use: "sig",
-    x5c: ["MIIDCzCCAfOgAwIBAgIJXs0oPWThI8kPMA0GCSqGSIb3DQEBCwUAMCMxITAfBgNVBAMTGHdvbGZ0cmFja2VyLmF1LmF1dGgwLmNvbTAeFw0xNzExMjkwNzQ5MjNaFw0zMTA4MDgwNzQ5MjNaMCMxITAfBgNVBAMTGHdvbGZ0cmFja2VyLmF1LmF1dGgwLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANdgF6PPBcEjHcw/ULja/NDZPcVU/8D3k5TY7+pTrM51z6lE0C81xMJwOTKq9IF9dy5TGkA5Wfyr1B+yOxGiUeWk8gdDL1Ub6iNzrQ33FY1mbYVL3cWIM4tfqZ8IxVMgHZMGHfRGvPFcL3iBfrevx5aJbHUAVCecwLQpaGIC+UFtUSEbPoIp1BTyW2ElULiksGBuPGuSjfnGLtuJE1sprj8obyb+dbz3vHvNIZi1g2OA4aFZuyBH6v/Lhp0mIHTtmJgde8gM9mbgR7AZap+mGhUerQsnAB5P8XGpmiZslBrBdv6FlwnL4OfCUx7NItjaSC204O/I5jCIMVrqoThbiH0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUAr4kHf0TYR1teaBpAGtjPXH/xZ8wDgYDVR0PAQH/BAQDAgKEMA0GCSqGSIb3DQEBCwUAA4IBAQA6NsyUvjnbUeAgnAZpKfUzDviJDYrkvcVeCXqy3yB8oJ6nTBDKXnIjQ9/5NvCpqVABxflvAfvUxG7APyBDAHOnvoiUUPE4GOFTNuqCAcwXT1fFETdZdozdpfA2835rVT5wvoo6Rt03vDpSYJH8h9O+EFfrpH/w+J4MIkRdy5DDCve0eUdICKZJEUccIkni9p5p23KdPjhHU+lztKzz6oUUsmSzJQLwGJ7p1dl25nKbobr+btCqLD8Ln/U9iryTK371JMg/XPh+CsBD+ofSEF0cKcrkhr5TLzA8R+ua4NxH6t5D6AFdNUyE1Pv8GfRjcuSBdI87d1Clne9m8JlBi8xZ"],
-    n: "12AXo88FwSMdzD9QuNr80Nk9xVT_wPeTlNjv6lOsznXPqUTQLzXEwnA5Mqr0gX13LlMaQDlZ_KvUH7I7EaJR5aTyB0MvVRvqI3OtDfcVjWZthUvdxYgzi1-pnwjFUyAdkwYd9Ea88VwveIF-t6_HlolsdQBUJ5zAtCloYgL5QW1RIRs-ginUFPJbYSVQuKSwYG48a5KN-cYu24kTWymuPyhvJv51vPe8e80hmLWDY4DhoVm7IEfq_8uGnSYgdO2YmB17yAz2ZuBHsBlqn6YaFR6tCycAHk_xcamaJmyUGsF2_oWXCcvg58JTHs0i2NpILbTg78jmMIgxWuqhOFuIfQ",
-    e: "AQAB",
-    kid: "MTQ0NjMxOTBCNEJDMjEyM0ZDMkMwQTRGRTRCRTkzRkU0NkY2NTU0RQ",
-    x5t: "MTQ0NjMxOTBCNEJDMjEyM0ZDMkMwQTRGRTRCRTkzRkU0NkY2NTU0RQ"
-    }
+    "kty": "RSA",
+    "e": "AQAB",
+    "use": "sig",
+    "kid": "-LvgjOXlvDfKtY6V-4j3OJbsh32IkD8GyNuCB1Egk5U",
+    "alg": "RS256",
+    "n": "owSQsO6k3lv2JWHyecafYkXPDw6uW-CmP4qeQGNR8-0elG86v5GafDHb1MAg76y9Ee-73HsEEIAVnTutDtO1sTQOWpnZWHsi21bXRlDiM1-bce6wW5BTVHwV5fDYsnNjlMrA0IJ4ltMFG8-crxmVP9wj7jOVIywYyW8q4qj_6Knuhei74edLv_xN4babo6cDMkL_-k3wMnVhni3sYhaJHNCrV892dmwROfREEScHP8bGpxMmp5VxmHI-nWCnmNGmsSuZcdRjMMVvzOSxZa0e3QvA4R5sqtCUr3X9xFmeLqmet8jcBCaWiA-7AR9Y_qep7Qom0ej2ITUOY7PRlKt4zQ"
+	}
   const key = await crypto.subtle.importKey('jwk', jwk, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['verify']);
   return crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, signature, data)
 }
